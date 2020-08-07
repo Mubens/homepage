@@ -6,7 +6,7 @@ const { resolve } = require('path')
 const HtmlWebpackPlugin = require('html-webpack-plugin')
 
 module.exports = {
-  entry: ['./src/app.js', './src/index.html'], // 入口
+  entry: ['./src/app.ts', './src/index.html'], // 入口
   output: {
     path: resolve(__dirname, 'dist'), // 输出路劲
     filename: './js/index.js' // 输出的文件名
@@ -25,10 +25,9 @@ module.exports = {
         ]
       },
       {
-        test: /\.js$/, // 只检测 js 文件
+        test: /\.tsx?$/, // 只检测 js 文件
         exclude: /node_modules/, // 排除 node_modules
-        enforce: 'pre', // 提前加载使用
-        loader: 'eslint-loader' // 语法检查
+        loader: ['babel-loader'] // 语法检查
       },
       {
         test: /\.(html)$/,
